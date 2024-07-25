@@ -1,4 +1,3 @@
-#app.py
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -92,7 +91,11 @@ admin.add_link(LogoutMenuLink(name='Logout', category='', url='/logout'))
 def load_user(user_id):
     return db.session.get(User, int(user_id))
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('home.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
@@ -129,7 +132,7 @@ def upload():
     img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
     barcodes = decode(img)
     barcode_data = None
-    if (barcodes):
+    if barcodes:
         barcode_data = barcodes[0].data.decode('utf-8')
         return jsonify({'barcode': barcode_data})
     return jsonify({'error': 'No barcode found in image'}), 400
@@ -187,10 +190,19 @@ def fetch_row():
             'produit': product.produit,
             'ppv': product.ppv,
             'pph': product.pph,
-            'categorie': '',  # Include category if available in your data
-            'tva': ''  # Include tva if available in your data
         })
     return jsonify({'error': 'Barcode not found in database'}), 404
+
+@app.route('/results')
+@login_required
+def results():
+    barcode = request.args.get('barcode')
+    if not barcode:
+        return redirect(url_for('dashboard'))
+    
+    product = Product.query.filter_by(user_id=current_user.id, code_barre=barcode.strip()).first()
+
+    return render_template('results.html', barcode=barcode, product=product)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

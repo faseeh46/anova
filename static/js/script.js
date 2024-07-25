@@ -1,8 +1,10 @@
 // script.js
+
 let imageUploaded = false;
 let barcodeData = '';
 
 document.getElementById('image').onchange = function(event) {
+    console.log('Image file selected');
     let formData = new FormData(document.getElementById('upload-image-form'));
     fetch('/upload', {
         method: 'POST',
@@ -11,20 +13,18 @@ document.getElementById('image').onchange = function(event) {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            document.getElementById('barcode').textContent = 'Error: ' + data.error;
-            clearRowData();
+            alert('Error: ' + data.error);
         } else {
             barcodeData = data.barcode;
-            document.getElementById('barcode').textContent = 'Barcode: ' + barcodeData;
-            imageUploaded = true;
-            console.log('Image uploaded and barcode data obtained:', barcodeData);  // Debugging statement
-            triggerScanIfReady();
+            console.log('Image uploaded and barcode data obtained:', barcodeData);
+            window.location.href = `/results?barcode=${barcodeData}`;
         }
     })
     .catch(error => console.error('Error:', error));
 };
 
 document.getElementById('csvfile').onchange = function(event) {
+    console.log('CSV file selected');
     let formData = new FormData(document.getElementById('upload-csv-form'));
     fetch('/upload_csv', {
         method: 'POST',
@@ -33,8 +33,8 @@ document.getElementById('csvfile').onchange = function(event) {
     .then(response => response.json())
     .then(data => {
         alert(data.message);
-        csvUploaded = true;
-        console.log('CSV file uploaded successfully');  // Debugging statement
+        let csvUploaded = true;
+        console.log('CSV file uploaded successfully');
         triggerScanIfReady();
     })
     .catch(error => console.error('Error:', error));
@@ -42,17 +42,17 @@ document.getElementById('csvfile').onchange = function(event) {
 
 function triggerScanIfReady() {
     if (csvUploaded && imageUploaded) {
-        console.log('Both CSV and image uploaded, fetching row data...');  // Debugging statement
+        console.log('Both CSV and image uploaded, fetching row data...');
         fetchRowData(barcodeData);
     } else if (csvUploaded) {
-        console.log('CSV already uploaded, waiting for image upload to fetch row data...');  // Debugging statement
+        console.log('CSV already uploaded, waiting for image upload to fetch row data...');
     } else {
-        console.log('Waiting for both CSV and image uploads...');  // Debugging statement
+        console.log('Waiting for both CSV and image uploads...');
     }
 }
 
 function fetchRowData(barcode) {
-    console.log('Fetching row data for barcode:', barcode);  // Debugging statement
+    console.log('Fetching row data for barcode:', barcode);
     fetch('/fetch_row', {
         method: 'POST',
         headers: {
@@ -63,13 +63,12 @@ function fetchRowData(barcode) {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            document.getElementById('produit').textContent = 'Error: ' + data.error;
-            clearRowData();
+            alert('Error: ' + data.error);
         } else {
             document.getElementById('produit').textContent = 'Produit: ' + data.produit;
             document.getElementById('ppv').textContent = 'PPV: ' + data.ppv;
             document.getElementById('pph').textContent = 'PPH: ' + data.pph;
-            console.log('Row data fetched successfully:', data);  // Debugging statement
+            console.log('Row data fetched successfully:', data);
         }
     })
     .catch(error => console.error('Error:', error));
