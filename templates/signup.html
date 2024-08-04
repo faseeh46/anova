@@ -1,35 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/signup.css" />
     <title>Signup</title>
-</head>
-<body>
-    <h2>Signup</h2>
-    <form id="signup-form" method="POST">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <label for="confirm_password">Confirm Password:</label><br>
-        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-        <button type="submit">Signup</button>
-    </form>
-    <p id="error-message" style="color: red;"></p>
-    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <h2>Signup</h2>
+        <form id="signup-form" method="POST">
+          <div class="input-group">
+            <label for="name">Name</label>
+            <div class="input-field">
+              <input type="text" id="name" name="name" required />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <div class="input-field">
+              <input type="email" id="email" name="email" required />
+            </div>
+            <p class="error-message" id="email-error">
+              The email has already been taken.
+            </p>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="input-field">
+              <input type="password" id="password" name="password" required />
+            </div>
+            <p class="error-message" id="password-error">
+              The password field must be at least 8 characters.
+            </p>
+          </div>
+          <div class="input-group">
+            <label for="confirm_password">Confirm Password</label>
+            <div class="input-field">
+              <input type="password" id="confirm_password" name="confirm_password" required />
+            </div>
+          </div>
+          <button type="submit">Signup</button>
+          <p id="error-message" class="error-message"></p>
+        </form>
+        <p>
+          Already have an account? <a href="{{ url_for('login') }}">Login</a>
+        </p>
+      </div>
+    </div>
 
     <script>
-        document.getElementById('signup-form').onsubmit = function(event) {
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm_password').value;
-            if (password !== confirmPassword) {
-                document.getElementById('error-message').textContent = 'Passwords do not match!';
-                event.preventDefault();
-            }
-        };
+      document.getElementById("signup-form").onsubmit = function (event) {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm_password").value;
+        if (password !== confirmPassword) {
+          document.getElementById("error-message").textContent = "Passwords do not match!";
+          event.preventDefault();
+        }
+      };
     </script>
-</body>
+  </body>
 </html>

@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+    <link rel="stylesheet" href="../static/css/home.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h2>Welcome to Anova Pulse</h2>
-        </header>
-        <main>
-            
-            <br>
-            <a href="{{ url_for('login') }}" class="btn">Login</a>
-            <br>
-            <br>
-            <br>
-            <a href="{{ url_for('signup') }}" class="btn">Signup</a>
-        </main>
+      <header>
+        <h2>Welcome to Anova Pulse</h2>
+      </header>
+      <main class="main-content">
+        <div class="left-column">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+        </div>
+        <div class="right-column">
+          <a href="{{ url_for('login') }}" class="btn">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn">Signup</a>
+        </div>
+      </main>
     </div>
-</body>
+  </body>
 </html>

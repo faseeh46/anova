@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}"
+    />
     <title>Anova Scan</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h2>Anova Scan</h2>
-            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
-            {% if current_user.is_admin %}
-                <a href="/admin" class="logout-btn">Admin</a>
-            {% endif %}
-        </header>
-        <main>
-            <section>
-                <h1>Scan Barcode</h1>
-                <form id="upload-image-form" method="POST" enctype="multipart/form-data">
-                    <label for="image" class="upload-btn">Choose Image File</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </form>
-            </section>
-            <section>
-                <h1>Upload CSV</h1>
-                <form id="upload-csv-form" method="POST" enctype="multipart/form-data">
-                    <label for="csvfile" class="upload-btn">Choose CSV File</label>
-                    <input type="file" id="csvfile" name="csvfile" accept=".csv">
-                </form>
-            </section>
-        </main>
+      <header class="header">
+        <h2>Anova Scan</h2>
+        <nav class="nav">
+          {% if current_user.is_admin %}
+          <a href="/admin" class="nav-btn">Admin</a>
+          {% endif %}
+          <a href="{{ url_for('logout') }}" class="nav-btn">Logout</a>
+        </nav>
+      </header>
+      <main>
+        <form id="upload-csv-form" method="POST" enctype="multipart/form-data">
+          <label for="csvfile" class="upload-btn">Upload CSV File</label>
+          <input type="file" id="csvfile" name="csvfile" accept=".csv" />
+        </form>
+        <div class="scan-section-div">
+          <div class="scan-section">
+            <form
+              id="upload-image-form"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <label for="image" class="scan-btn">Scan Barcode</label>
+              <input type="file" id="image" name="image" accept="image/*" />
+            </form>
+          </div>
+        </div>
+      </main>
     </div>
     <script>
-        let csvUploaded = {{ csv_uploaded | tojson | safe }};
+      let csvUploaded = {{ csv_uploaded | tojson | safe }};
     </script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+  </body>
 </html>

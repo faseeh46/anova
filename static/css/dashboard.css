@@ -1,0 +1,106 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #faf3e0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  width: 80%;
+  max-width: 1200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.header h2 {
+  font-family: "Poppins", sans-serif;
+  color: #3c6e71;
+}
+
+.nav .nav-btn {
+  background-color: #5bb65e;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-left: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav .nav-btn:hover {
+  background-color: #45a049;
+}
+
+main {
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+}
+.scan-section-div {
+  display: flex;
+  height: 60%;
+  justify-content: center;
+  align-items: center;
+}
+
+.scan-section,
+.upload-section {
+  background-color: #e9ecef;
+  border: 2px dashed #5bb65e;
+  border-radius: 10px;
+  padding: 70px;
+  max-width: 220px;
+  max-height: 140px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.scan-section h1,
+.upload-section h1 {
+  font-family: "Poppins", sans-serif;
+  color: #5bb65e;
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  background-color: #5bb65e;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+.scan-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #67c56a;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.scan-btn:hover,
+.upload-btn:hover {
+  background-color: #45a049;
+}
+
+input[type="file"] {
+  display: none;
+}

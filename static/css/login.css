@@ -1,0 +1,88 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #faf3e0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .form-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .input-field {
+    display: flex;
+    align-items: center;
+    background-color: #d6e7d9;
+    border: 1px solid #98b898;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .input-field input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+  }
+  
+  button {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    background-color: #5bb65e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  p {
+    margin-top: 20px;
+    color: #333;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  p a {
+    color: #ff8c00;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
