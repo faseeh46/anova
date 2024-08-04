@@ -213,13 +213,12 @@ def signup():
         confirm_password = request.form['confirm_password']
 
         if password != confirm_password:
-            flash('Passwords do not match!')
-            return redirect(url_for('signup'))
+            return jsonify({'error': 'Password Does not matched'}), 400
+        
 
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('Email address already exists')
-            return redirect(url_for('signup'))
+            return jsonify({'error': 'Email Already Exist'}), 400
 
         new_user = User(name=name, email=email)
         new_user.set_password(password)  # Hash the password before saving
